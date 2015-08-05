@@ -36,6 +36,7 @@ gem "figaro", '~> 1.1.1'
 
 group :development, :test do
   	# Use sqlite3 as the database for Active Record
+  	# Use for develop and test only since Heroku uses posgres sql
 	gem 'sqlite3'
 
   	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +49,7 @@ group :development, :test do
   	gem 'spring'
 end
 
+# Required for Heroku 
 group :production do 
 	gem 'pg'  # postgress
 	gem 'rails_12factor'
