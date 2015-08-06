@@ -4,13 +4,13 @@ class NotificationsController < ApplicationController
   def incoming
    
     # Grab the phone number from incoming Twilio params
-    @phone_number = params[:From]
+    @phone_number = params[:From].permit(:From)
  
     # Find the subscriber associated with this number or create a new one
     @new_subscriber = Subscriber.exists?(:phone_number => @phone_number) === false
 
 
-    @subscriber = Subscriber.first_or_create(:phone_number => @phone_number).permit(:phone_number)
+    @subscriber = Subscriber.first_or_create(:phone_number => @phone_number)
 
     @body = if params[:Body].nil? then '' else params[:Body].downcase end
      
