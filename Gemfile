@@ -25,6 +25,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Used for Environment Variables 
 gem "figaro", '~> 1.1.1'
 
+# Used for Twilio API communication
+gem 'twilio-ruby', '~> 4.2.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
