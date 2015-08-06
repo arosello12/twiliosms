@@ -14,7 +14,7 @@ class NotificationsController < ApplicationController
 
     @subscriber = Subscriber.first(:phone_number => @phone_number)
     
-    if @subscriber.nil? 
+    if @subscriber == nil 
         @subscriber = Subscriber.create(:phone_number => @phone_number)
     end
 
