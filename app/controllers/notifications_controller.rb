@@ -4,22 +4,26 @@ class NotificationsController < ApplicationController
   def incoming
    
     # Grab the phone number from incoming Twilio params
-    @phone_number = params[:From].permit(:From)
+    @phone_number = params[:From]
  
     # Find the subscriber associated with this number or create a new one
     @new_subscriber = Subscriber.exists?(:phone_number => @phone_number) === false
 
 
-    @subscriber = Subscriber.first_or_create(:phone_number => @phone_number)
+    #@subscriber = Subscriber.first_or_create(:phone_number => @phone_number)
+
+    @subscriber = Subscriber.first(:phone_number => @phone_number)
+    
+    if @subscriber.nil? 
+        @subscriber = Subscriber.create(:phone_number => @phone_number)
+    end
 
     @body = if params[:Body].nil? then '' else params[:Body].downcase end
      
     begin
-      if @new_subscriber
-        puts "APP: New Subscriber"  
+      if @new_subscriber  
         output = "Thanks for contacting TWBC! Text 'subscribe' if you would to receive updates via text message."
       else
-        puts "APP: Processing Message Body"  
         # Process the command from our Subscriber
         output = process_message(@body, @subscriber)
       end
@@ -41,7 +45,7 @@ class NotificationsController < ApplicationController
         s.send_message(message, image_url)
         flash[:success] = "Messages on their way!"
       rescue 
-        flash[:alert] = "Something when wrong."
+        flash[:alert] = "Something went wrong."
       end
     end
     redirect_to '/'
