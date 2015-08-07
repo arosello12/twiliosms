@@ -9,20 +9,16 @@ class NotificationsController < ApplicationController
     # Find the subscriber associated with this number or create a new one
     @new_subscriber = Subscriber.exists?(:phone_number => @phone_number) === false
 
+    @subscriber = Subscriber.first_or_create(:phone_number => @phone_number)
 
-    #@subscriber = Subscriber.first_or_create(:phone_number => @phone_number)
-
-    @subscriber = Subscriber.where(:phone_number => @phone_number)
+   # @subscriber = Subscriber.where(:phone_number => @phone_number)
     
-    if @subscriber != nil 
-        puts "App: Subscriber Not Nil"
-    end
+    puts @phone_number
 
-    if @subscriber == nil 
-        puts "App: Subscriber= nil"
-        @subscriber = Subscriber.create(phone_number: @phone_number)
-        
-    end
+   # if @subscriber == nil 
+   #     puts "App: Subscriber= nil"
+   #     @subscriber = Subscriber.create(phone_number: @phone_number)
+   # end
 
     @body = if params[:Body].nil? then '' else params[:Body].downcase end
      
