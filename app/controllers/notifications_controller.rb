@@ -13,7 +13,7 @@ class NotificationsController < ApplicationController
 
    # @subscriber = Subscriber.where(:phone_number => @phone_number)
     
-    puts @phone_number
+   
 
    # if @subscriber == nil 
    #     puts "App: Subscriber= nil"
@@ -33,6 +33,7 @@ class NotificationsController < ApplicationController
       output = "Something went wrong. Try again."
     end
 
+     puts output
     # Render the TwiML response
     respond(output)
   end
