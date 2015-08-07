@@ -8,17 +8,7 @@ class NotificationsController < ApplicationController
  
     # Find the subscriber associated with this number or create a new one
     @new_subscriber = Subscriber.exists?(:phone_number => @phone_number) === false
-
     @subscriber = Subscriber.first_or_create(:phone_number => @phone_number)
-
-   # @subscriber = Subscriber.where(:phone_number => @phone_number)
-    
-   
-
-   # if @subscriber == nil 
-   #     puts "App: Subscriber= nil"
-   #     @subscriber = Subscriber.create(phone_number: @phone_number)
-   # end
 
     @body = if params[:Body].nil? then '' else params[:Body].downcase end
      
@@ -33,7 +23,6 @@ class NotificationsController < ApplicationController
       output = "Something went wrong. Try again."
     end
 
-     puts output
     # Render the TwiML response
     respond(output)
   end
@@ -86,6 +75,8 @@ class NotificationsController < ApplicationController
       response = Twilio::TwiML::Response.new do |r|
         r.Message message
       end
+
+      puts "APP RESPONSE:" + response.text
       render text: response.text
     end
 
