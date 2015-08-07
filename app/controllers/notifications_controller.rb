@@ -16,6 +16,7 @@ class NotificationsController < ApplicationController
     
     if @subscriber == nil 
         @subscriber = Subscriber.create(phone_number: @phone_number)
+        puts "App: Subscriber=" + @subscriber
     end
 
     @body = if params[:Body].nil? then '' else params[:Body].downcase end
