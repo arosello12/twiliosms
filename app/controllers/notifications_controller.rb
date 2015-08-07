@@ -13,11 +13,15 @@ class NotificationsController < ApplicationController
     #@subscriber = Subscriber.first_or_create(:phone_number => @phone_number)
 
     @subscriber = Subscriber.where(:phone_number => @phone_number)
-    puts "App: Subscriber=" + @subscriber
     
+    if @subscriber != nil 
+        puts "App: Subscriber Not Nil"
+    end
+
     if @subscriber == nil 
+        puts "App: Subscriber= nil"
         @subscriber = Subscriber.create(phone_number: @phone_number)
-        puts "App: Subscriber=" + @subscriber
+        
     end
 
     @body = if params[:Body].nil? then '' else params[:Body].downcase end
