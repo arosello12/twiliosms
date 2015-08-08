@@ -14,8 +14,8 @@ class SmsController < ApplicationController
     
     response = Twilio::TwiML::Response.new do |r|
         r.Message do |message|
-        message.Body "Here are some images to view"
-        message.MediaUrl "https://demo.twilio.com/owl.png"
+        #message.Body "Here are some images to view"
+       # message.MediaUrl "https://demo.twilio.com/owl.png"
         message.MediaUrl "https://demo.twilio.com/logo.png"
         end
     end
