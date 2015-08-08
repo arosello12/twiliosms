@@ -7,6 +7,7 @@ class SmsController < ApplicationController
   # Receive incoming SMS
   def smsincoming
   
+   # Test one
    # twiml = Twilio::TwiML::Response.new do |r|
    #     r.Message "Hey Monkey. Thanks for the message!"
    # end
@@ -15,8 +16,8 @@ class SmsController < ApplicationController
     response = Twilio::TwiML::Response.new do |r|
         r.Message do |message|
         message.Body "Here are some images to view"
-        message.Media "https://demo.twilio.com/owl.png"
         message.Media "https://demo.twilio.com/logo.png"
+        message.Media "https://demo.twilio.com/owl.png"
         end
     end
    
