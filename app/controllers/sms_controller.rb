@@ -15,8 +15,8 @@ class SmsController < ApplicationController
         message.MediaUrl "https://demo.twilio.com/logo.png"
         end
     end
-
-    render twiml.text
+    puts "APP: " + twiml.text
+    render text: twiml.text
 
   end
 
