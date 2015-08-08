@@ -16,7 +16,8 @@ class SmsController < ApplicationController
         end
     end
   
-    twiml.text
+   twiml.headers["Content-Type"] = "text/xml"
+   render text: twiml.text
 
   end
 
