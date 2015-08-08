@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
  # get 'smsincoming/' => 'sms#smsincoming'
   get 'smsincoming/' => 'sms#smsincoming'
-  get 'handle_gather/' => 'sms#handle_gather'
+  get 'handlegather/' => 'sms#handlegather'
 
   get 'incoming/' => 'notifications#incoming'
 
