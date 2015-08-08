@@ -27,16 +27,16 @@ class SmsController < ApplicationController
    # render_twiml response
 
    # Example 3 ------------------------------------------------------------------------------------
-   # sender = params[:From]
-   # friends = {
-   #   "+18137678172" => "Al Rosello",
-   #   "+13053063771" => "Better Voice",
-   #   "+14155551234" => "Virgil"
-   # }
+    sender = params[:From]
+    friends = {
+      "+18137678172" => "Al Rosello",
+      "+13053063771" => "Better Voice",
+      "+14155551234" => "Virgil"
+    }
    # session["counter"] ||= 0
    # sms_count = session["counter"]
 
-   # name = friends[sender] || "Mobile Monkey"
+    name = friends[sender] || "Mobile Monkey"
 
    # if sms_count == 0
    #   message = "Hello, #{name}. Thanks for the new message."
@@ -52,7 +52,7 @@ class SmsController < ApplicationController
 
  # Example 4 - Sending Text Message From a Phone Call -----------------------------------------------
    response = Twilio::TwiML::Response.new do |r|
-     r.Say "Hello Monkey! You will get an SMS message soon."
+     r.Say "Hello #{name}. You will get an SMS message soon."
      r.Sms "Here it is!" 
    end 
     render_twiml response 
