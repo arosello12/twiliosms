@@ -3,11 +3,20 @@ class SmsController < ApplicationController
   # Receive incoming SMS
   def smsincoming
   
-    response = Twilio::TwiML::Response.new do |r|
-        r.Message "Hey Monkey. Thanks for the message!"
+   # twiml = Twilio::TwiML::Response.new do |r|
+   #     r.Message "Hey Monkey. Thanks for the message!"
+   # end
+
+    twiml = Twilio::TwiML::Response.new do |r|
+        r.Message do |message|
+        message.Body "Body"
+        message.MediaUrl "https://demo.twilio.com/owl.png"
+        message.MediaUrl "https://demo.twilio.com/logo.png"
+        end
     end
 
-    render text: response.text
+
+    render text: twiml.text
 
   end
 
