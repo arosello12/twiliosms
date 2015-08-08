@@ -1,4 +1,5 @@
 class SmsController < ApplicationController
+  include Webhookable
 
   # Receive incoming SMS
   def smsincoming
@@ -8,16 +9,15 @@ class SmsController < ApplicationController
    # end
    # render text: twiml.text
     
-    twiml = Twilio::TwiML::Response.new do |r|
+    response = Twilio::TwiML::Response.new do |r|
         r.Message do |message|
         message.Body "Body"
         message.MediaUrl "https://demo.twilio.com/owl.png"
         message.MediaUrl "https://demo.twilio.com/logo.png"
         end
     end
-  
-   twiml.headers["Content-Type"] = "text/xml"
-   render text: twiml.text
+   
+   render_twiml response
 
   end
 
