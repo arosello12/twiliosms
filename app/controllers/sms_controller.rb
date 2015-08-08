@@ -67,11 +67,13 @@ class SmsController < ApplicationController
   def handlegather
 
     redirect_to '/smsincoming' unless params['Digits'] == '1'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Dial '+13105551212' ### Connect the caller to Koko, or your cell
+    Twilio::TwiML::Response.new do |r|
+      r.Dial '+18137678172' ### Connect the caller to Koko, or your cell
       r.Say 'The call failed or the remote party hung up. Goodbye.'
     end
+    #render  nothing: 
     
+
   end
 
 
