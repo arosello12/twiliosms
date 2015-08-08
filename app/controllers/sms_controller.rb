@@ -4,9 +4,10 @@ class SmsController < ApplicationController
   after_filter :set_header
   skip_before_action :verify_authenticity_token
 
+
   # Receive incoming SMS
   def smsincoming
-  
+
    # Example 1
    # response = Twilio::TwiML::Response.new do |r|
    #     r.Message "Hey Monkey. Thanks for the message!"
@@ -29,7 +30,7 @@ class SmsController < ApplicationController
 
     sender = params[:From]
     friends = {
-       "+18137678172" => "Al Rosello",
+      "+18137678172" => "Al Rosello",
       "+13053063771" => "Better Voice",
       "+14155551234" => "Virgil"
     }
@@ -37,10 +38,13 @@ class SmsController < ApplicationController
     sms_count = session["counter"]
 
     name = friends[sender] || "Mobile Monkey"
+
+    if sms_count == 0
       message = "Hello, #{name}. Thanks for the new message."
     else
       message = "Hello, #{name}. Thanks for message number #{sms_count + 1}"
     end
+
     response = Twilio::TwiML::Response.new do |r|
       r.Message message
     end
