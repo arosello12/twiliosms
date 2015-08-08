@@ -26,17 +26,32 @@ class SmsController < ApplicationController
    # render_twiml response
 
    # Example 3
-    sender = params[:From]
-    friends = {
-      "+18137678172" => "Al Rosello",
-      "+13053063771" => "Better Voice",
-      "+14155551234" => "Virgil"
-    }
-    name = friends[sender] || "Mobile Monkey"
-    response = Twilio::TwiML::Response.new do |r|
-      r.Message "Hello, #{name}. Thanks for the message."
+   # sender = params[:From]
+   # friends = {
+   #   "+18137678172" => "Al Rosello",
+   #   "+13053063771" => "Better Voice",
+   #   "+14155551234" => "Virgil"
+   # }
+   # name = friends[sender] || "Mobile Monkey"
+   # response = Twilio::TwiML::Response.new do |r|
+   #   r.Message "Hello, #{name}. Thanks for the message."
+   # end
+   # render_twiml response
+
+
+    session["counter"] ||= 0
+    sms_count = session["counter"]
+    if sms_count == 0
+      message = "Hello, thanks for the new message."
+    else
+      message = "Hello, thanks for message number #{sms_count + 1}"
     end
+    response = Twilio::TwiML::Response.new do |r|
+      r.Message message
+    end
+    session["counter"] += 1
     render_twiml response
+
 
   end
 
