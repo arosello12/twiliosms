@@ -53,10 +53,24 @@ class SmsController < ApplicationController
  # Example 4 - Sending Text Message From a Phone Call -----------------------------------------------
    response = Twilio::TwiML::Response.new do |r|
      r.Say "Hello #{name}. You will get an SMS message soon."
-     r.Sms "Here it is!" 
+    # r.Sms "Here it is!" 
      r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
+      r.Gather :numDigits => '1', :action => '/handle_gather', :method => 'get' do |g|
+        g.Say 'To speak to a real monkey, press 1.'
+        g.Say 'Press any other key to start over.'
+      end
    end 
     render_twiml response 
+  end
+
+
+  def handle_gather
+
+    redirect '/smsincoming' unless params['Digits'] == '1'
+    Twilio::TwiML::Response.new do |r|
+      r.Dial '+13105551212' ### Connect the caller to Koko, or your cell
+      r.Say 'The call failed or the remote party hung up. Goodbye.'
+    end.text
   end
 
 

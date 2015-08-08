@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
  # get 'smsincoming/' => 'sms#smsincoming'
   get 'smsincoming/' => 'sms#smsincoming'
+  get 'handle_gather/' => 'sms#handle_gather'
 
   get 'incoming/' => 'notifications#incoming'
+
+
   post 'new/' => 'notifications#new'
 
   # You can have the root of your site routed with "root"
