@@ -8,16 +8,18 @@ class SmsController < ApplicationController
   def smsincoming
   
    # Test one
-   # twiml = Twilio::TwiML::Response.new do |r|
+   # response = Twilio::TwiML::Response.new do |r|
    #     r.Message "Hey Monkey. Thanks for the message!"
    # end
-   # render text: twiml.text
+   # render_twiml response
     
     response = Twilio::TwiML::Response.new do |r|
         r.Message do |message|
-        message.Body "Here are some images to view"
+        message.Body "Here are some images to view blah blah blah and Blah blah blah do re mi fa sol la ti"
         message.Media "https://demo.twilio.com/logo.png"
         message.Media "https://demo.twilio.com/owl.png"
+        message.Media "https://demo.twilio.com/owl.png"
+         message.Media "https://demo.twilio.com/logo.png"
         end
     end
    
