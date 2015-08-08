@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'smsincoming/' => 'sms#smsincoming'
+ # get 'smsincoming/' => 'sms#smsincoming'
+  get 'smsincoming/' => 'notifications#smsincoming'
 
   get 'incoming/' => 'notifications#incoming'
   post 'new/' => 'notifications#new'

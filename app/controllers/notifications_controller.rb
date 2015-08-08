@@ -1,5 +1,17 @@
 class NotificationsController < ApplicationController
 
+  
+  # Receive incoming SMS
+  def smsincoming
+  
+    response = Twilio::TwiML::Response.new do |r|
+        r.Message "Hey Monkey. Thanks for the message!"
+    end
+
+    render text: response.text
+
+  end
+
   # Receive incoming SMS
   def incoming
    
