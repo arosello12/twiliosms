@@ -1,4 +1,4 @@
-class SMSController < ApplicationController
+class SmsController < ApplicationController
 
   # Receive incoming SMS
   def smsincoming

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
  # get 'smsincoming/' => 'sms#smsincoming'
-  get 'smsincoming/' => 'notifications#smsincoming'
+  get 'smsincoming/' => 'sms#smsincoming'
 
   get 'incoming/' => 'notifications#incoming'
   post 'new/' => 'notifications#new'
