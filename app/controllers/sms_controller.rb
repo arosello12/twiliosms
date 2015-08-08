@@ -16,7 +16,7 @@ class SmsController < ApplicationController
         end
     end
     puts "APP: " + twiml.text
-    render body: twiml.text
+    render html: twiml.text
 
   end
 
