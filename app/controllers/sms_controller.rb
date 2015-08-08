@@ -54,6 +54,7 @@ class SmsController < ApplicationController
    response = Twilio::TwiML::Response.new do |r|
      r.Say "Hello #{name}. You will get an SMS message soon."
      r.Sms "Here it is!" 
+     r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
    end 
     render_twiml response 
   end
